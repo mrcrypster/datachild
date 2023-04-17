@@ -1,0 +1,17 @@
+<?php if ( !$data['articles'] ) { ?>
+  <p class="no-articles">No articles here</p>
+<?php } ?><ul class="articles">
+  <?php foreach ( $data['articles'] as $article ) { ?>
+    <li>
+      <a href="<?=$article['url']?>"><?=htmlspecialchars($article['title'])?></a>
+      <p><?=htmlspecialchars($article['description'])?></p>
+
+      <small>
+        Published
+        <?=published($article['publish'])?>
+        in <b>#<?=$article['category']?></b>
+        <?=tags($article['tags'])?>
+      </small>
+    </li>
+  <?php } ?>
+</ul>

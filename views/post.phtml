@@ -1,0 +1,12 @@
+<article>
+  <h1><?=htmlspecialchars($data['article']['title'])?></h1>
+
+  <?=$data['article']['html']?>
+
+  <small>
+    Published
+    <?=published($data['article']['publish'])?>
+    in <a href="/<?=$data['article']['category']?>"><b>#<?=$data['article']['category']?></b></a>
+    <?=tags($data['article']['tags'])?>
+  </small>
+</article>

@@ -1,0 +1,25 @@
+<div id="head">
+  <?php if ( $this->endpoint == '/' ) { ?>
+    <b id="logo">DataChild</b>
+  <?php } else { ?>
+    <a href="/" id="logo">DataChild</a>
+  <?php } ?>
+
+
+  <ul id=menu>
+    <?php $menu = [
+      '/data' => 'Data',
+      '/programming' => 'Programming',
+      '/machinelearning' => 'Machine learning',
+    ]; ?>
+    <?php foreach ( $menu as $url => $title ) { ?>
+      <li>
+        <?php if ( $this->endpoint == $url ) { ?>
+          <?=$title?>
+        <?php } else { ?>
+          <a href="<?=$url?>"><?=$title?></a>
+        <?php } ?>
+      </li>
+    <?php } ?>
+  </ul>
+</div>
