@@ -3,6 +3,8 @@ body {
   font-family: Georgia;
   font-size: 18px;
   line-height: 150%;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -25,7 +27,7 @@ a {
 #head {
   width: 100%;
   max-width: 900px;
-  margin: 0 auto 2em auto;
+  margin: 0 auto 0 auto;
   padding: 1em 0;
 
   #logo {
@@ -73,7 +75,7 @@ a {
 .articles {
   width: 100%;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 2em auto 0 auto;
   padding: 0;
   list-style: none;
 
@@ -94,10 +96,11 @@ article {
   h1 {
     font-size: 5vw;
     line-height: 125%;
-    padding: 0 .5em;
+    padding: .5em .5em;
     margin: 0 0 .5em 0;
     font-weight: normal;
     text-align: center;
+    background: #f6f6f6;
   }
 
   small, p, ul, ol, pre, h2, h3, h4, h5 {
@@ -109,6 +112,12 @@ article {
 
   h2 {
     margin: 2em auto 1em auto;
+    color: #222;
+  }
+
+  h3 {
+    margin: 2em auto 1em auto;
+    color: #444;
   }
 
   small {
@@ -150,6 +159,15 @@ article {
     color: #222;
   }
 
+  p a code {
+    color: #0074D9;
+  }
+
+  p a:hover code {
+    background: #0074D9;
+    color: #fff;
+  }
+
   pre {
     display: block;
 
@@ -172,23 +190,9 @@ article {
     }
 
     &.output {
-      margin-top: -1.25em;
       position: relative;
-      &::before {
-        position: absolute;
-        right: .25em;
-        top: .25em;
-        width: 75px;
-        height: 32px;
-        background: url(/i/output.png) no-repeat center;
-        background-size: 75px;
-        opacity: .34;
-        content: ' ';
-      }
 
       code {
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
         color: #666;
         background: #eee;
 
@@ -196,15 +200,36 @@ article {
           color: #FF851B;
         }
       }
+    }
+  }
 
-      &:hover {
-        &::before {
-          opacity: 1;
-        }
+  pre + pre.output {
+    margin-top: -1.25em;
 
-        code {
-          background: #e8e8e8;
-        }
+    &::before {
+      position: absolute;
+      right: .25em;
+      top: .25em;
+      width: 75px;
+      height: 32px;
+      background: url(/i/output.png) no-repeat center;
+      background-size: 75px;
+      opacity: .34;
+      content: ' ';
+    }
+
+    code {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+
+      code {
+        background: #e8e8e8;
       }
     }
   }

@@ -1,5 +1,5 @@
 # Reading CSV, TSV, and invalid CSV files with Golang
-* url: http://datachild.local/data/reading-csv-golang
+* url: http://datachild.local/programming/reading-csv-golang
 * category: programming
 * published: 2023-04-14
 * tags: golang, csv
@@ -14,7 +14,7 @@ Let's see how to address the most common cases.
 To read CSV files it's recommended to use `encoding/csv` reader component.
 We're going to use the following `data.csv` for examples:
 
-```bash
+```cli
 cat data.csv
 ```
 ```output
@@ -122,7 +122,7 @@ Double quotes should be used to quote values in CSV files, but someone might hav
 
 Unfortunately, `encoding/csv` component [doesn't support custom quotes](https://github.com/golang/go/issues/8458). In such cases, we can use extra tools to reformat before we feed them to our program. Let's take the following single-quoted CSV file as an example:
 
-```bash
+```cli
 cat data-custom.csv
 ```
 ```output
@@ -205,4 +205,4 @@ func main() {
 * `fmt.Println(err)` - output error
 * `continue` - we do not want to process (or print as in the example) invalid rows, so we skip
 
-Another option is to use `csvclean` (@plan: csvkit) tool from [csvkit](https://csvkit.readthedocs.io/en/latest/tutorial/1_getting_started.html#installing-csvkit) toolset to filter invalid rows from the CSV file.
+Another option is to use `csvclean` tool from [`csvkit`](/programming/format-clean-fix-csv-with-csvkit) toolset to filter invalid rows from the CSV file.
