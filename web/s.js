@@ -25,7 +25,7 @@ let app = {
         fetch(this.href, { headers: {'X-BODY-ONLY': true } })
         .then(function(r) {
           window.history.pushState(
-            {'pageTitle': r.headers.get('X-PAGE-TITLE')},
+            {pageTitle: r.headers.get('X-PAGE-TITLE'), path: a.href},
             '', a.href
           );
           document.title = r.headers.get('X-PAGE-TITLE');
@@ -37,7 +37,20 @@ let app = {
         e.stopPropagation();
         e.preventDefault();
       }
-    })
+    });
+
+    window.addEventListener('popstate', function(e) {
+      if ( e.state && e.state.path ) {
+        fetch(e.state.path, { headers: {'X-BODY-ONLY': true } })
+        .then(function(r) {
+          document.title = r.headers.get('X-PAGE-TITLE');
+          return r.text();
+        } )
+        .then(html => {
+          document.body.innerHTML = html;
+        });
+      }
+    }, false);
   },
 
   // Handle code explanation hints
