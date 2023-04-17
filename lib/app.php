@@ -71,8 +71,13 @@ class app {
       $a = $this->get_article($md);
 
       if ( $filter ) {
-        if ( $filter['category'] && $a['category'] != $filter['category'] ) {
-          continue;
+        if ( $filter['category'] ) {
+          if ( $a['category'] != $filter['category'] ) {
+            $tags = preg_split('/\s*[,;]\s*/', $a['tags']);
+            if ( !in_array($filter['category'], $tags) ) {
+              continue;
+            }
+          }
         }
       }
 

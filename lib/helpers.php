@@ -45,12 +45,20 @@ function published($ts) {
 }
 
 
-function tags($tags) {
+function tags($tags, $linked = false) {
   if ( !$tags ) return;
   $tags = preg_split('/\s*[,;]\s*/', $tags);
+
+  if ( $linked ) {
+    foreach ( $tags as $k => $v ) {
+      $tags[$k] = "<a href=\"/{$v}\">{$v}</a>";
+    }
+  }
+
   if ( count($tags) > 1 ) {
     $last_tag = array_pop($tags);
   }
+
   return ' about <b>#' . implode('</b>, <b>#', $tags) . '</b>' .
          ( isset($last_tag) ? ' and <b>#' . $last_tag . '</b>' : '');
 }
