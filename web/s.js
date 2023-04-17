@@ -19,10 +19,13 @@ let app = {
   /* --- Handlers --- */
   // Convert all local links to AJAX
   handle_links: function() {
-    app.on('a', 'click', function(e) {
-      if ( this.getAttribute('href').indexOf('/') === 0 ) {
-        a = this;
-        fetch(this.href, { headers: {'X-BODY-ONLY': true } })
+    app.on('a, a *', 'click', function(e) {
+      let a = this;
+      if ( a.tagName != 'A' ) {
+        a = a.parentElement;
+      }
+      if ( a.getAttribute('href').indexOf('/') === 0 ) {
+        fetch(a.href, { headers: {'X-BODY-ONLY': true } })
         .then(function(r) {
           window.history.pushState(
             {pageTitle: r.headers.get('X-PAGE-TITLE'), path: a.href},
@@ -33,6 +36,7 @@ let app = {
         } )
         .then(html => {
           document.body.innerHTML = html;
+          window.scrollTo(0,0);
         });
         e.stopPropagation();
         e.preventDefault();
@@ -48,6 +52,7 @@ let app = {
         } )
         .then(html => {
           document.body.innerHTML = html;
+          window.scrollTo(0,0);
         });
       }
     }, false);
