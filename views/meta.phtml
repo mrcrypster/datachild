@@ -12,11 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leader-line/1.0.7/leader-line.min.js" integrity="sha512-0dNdzMjpT6pJdFGF1DwybFCfm3K/lzHhxaMXC/92J9/DZujHlqYFqmhTOAoD0o+LkeEsVK2ar/ESs7/Q2B6wJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/s.js"></script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LH6BV65BE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9LH6BV65BE');
-  </script>
+  <?php if ( !strpos($_SERVER['HTTP_HOST'], '.local') ) { ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LH6BV65BE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9LH6BV65BE');
+    </script>
+  <?php } ?>
 </head>
