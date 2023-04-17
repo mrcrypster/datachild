@@ -20,12 +20,12 @@ $cats = [];
 foreach ( $app->get_articles() as $article ) {
   fputs($f, url($article['url']));
 
-  if ( !$cats[$article['category']] ) {
+  if ( $article['category'] && !$cats[$article['category']] ) {
     $cats[$article['category']] = true;
     fputs($f, url('/' . $article['category']));
   }
 
-  foreach ( preg_split('/\s*[,;]\s*/', $article['tags']) as $t ) {
+  foreach ( preg_split('/\s*[,;]\s*/', $article['tags']) as $t ) if ( $t ) {
     if ( !$cats[$t] ) {
       $cats[$t] = true;
       fputs($f, url('/' . $t));
