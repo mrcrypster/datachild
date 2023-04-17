@@ -196,8 +196,8 @@ func main() {
 ```output
 [id name price]
 [1 Phone 123]
-record on line 3: wrong number of fields
-record on line 4: wrong number of fields
+***record on line 3: wrong number of fields***
+***record on line 4: wrong number of fields***
 [3 Boot 5]
 ```
 
@@ -205,4 +205,4 @@ record on line 4: wrong number of fields
 * `fmt.Println(err)` - output error
 * `continue` - we do not want to process (or print as in the example) invalid rows, so we skip
 
-Another option is to use `csvclean` (@plan) tool from [csvkit](https://csvkit.readthedocs.io/en/latest/tutorial/1_getting_started.html#installing-csvkit) toolset to filter invalid rows from the CSV file.
+Another option is to use `csvclean` (@plan: csvkit) tool from [csvkit](https://csvkit.readthedocs.io/en/latest/tutorial/1_getting_started.html#installing-csvkit) toolset to filter invalid rows from the CSV file.

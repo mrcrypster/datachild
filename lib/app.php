@@ -96,23 +96,38 @@ class app {
       $url_or_md = $md_file;
     }
 
-    $md = file_get_contents($url_or_md);
-    $body_md = trim(preg_fetch('/\n\n(.+)$/misu', $md));
-    ob_start();
-    passthru('echo ' . escapeshellarg($body_md) . '| pandoc -t html');
-    $html = ob_get_clean();
+    $cache_file = __DIR__ . '/../cache/' . md5($url_or_md);
+    if ( is_file($cache_file) ) {
+      $data = json_decode(file_get_contents($cache_file), true);
+      if ( $data['ts'] != filemtime($url_or_md) ) {
+        $data = null;
+      }
+    }
 
-    $html = preg_replace('/\*\*\*(.+)\*\*\*/', '<b>$1</b>', $html);
-    $html = str_replace('</code> -', '</code> &mdash; ', $html);
+    if ( !isset($data) || !$data ) {
+      $md = file_get_contents($url_or_md);
+      $body_md = trim(preg_fetch('/\n\n(.+)$/misu', $md));
+      ob_start();
+      passthru('echo ' . escapeshellarg($body_md) . '| pandoc -t html');
+      $html = ob_get_clean();
 
-    return [
-      'title' => trim(preg_fetch('/^#(.+)/', $md)),
-      'html' => $html,
-      'url' => trim(preg_fetch('/\* url: .+\.[^\.\/]+(\/.+)/', $md)),
-      'description' => trim(preg_fetch('/\* description: (.+)/', $md)),
-      'category' => trim(preg_fetch('/\* category: (.+)/', $md)),
-      'tags' => trim(preg_fetch('/\* tags: (.+)/', $md)),
-      'publish' => trim(preg_fetch('/\* published: (.+)/', $md))
-    ];
+      $html = preg_replace('/\*\*\*(.+)\*\*\*/', '<b>$1</b>', $html);
+      $html = str_replace('</code> -', '</code> &mdash; ', $html);
+
+      $data = [
+        'title' => trim(preg_fetch('/^#(.+)/', $md)),
+        'html' => $html,
+        'url' => trim(preg_fetch('/\* url: .+\.[^\.\/]+(\/.+)/', $md)),
+        'description' => trim(preg_fetch('/\* description: (.+)/', $md)),
+        'category' => trim(preg_fetch('/\* category: (.+)/', $md)),
+        'tags' => trim(preg_fetch('/\* tags: (.+)/', $md)),
+        'publish' => trim(preg_fetch('/\* published: (.+)/', $md)),
+        'ts' => filemtime($url_or_md)
+      ];
+
+      file_put_contents($cache_file, json_encode($data));
+    }
+
+    return $data;
   }
 }
