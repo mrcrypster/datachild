@@ -5,6 +5,9 @@ body {
   line-height: 150%;
   padding: 0;
   margin: 0;
+  border: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 a {
@@ -26,6 +29,7 @@ a {
 /* Head */
 #head {
   width: 100%;
+  box-sizing: border-box;
   max-width: 900px;
   margin: 0 auto 0 auto;
   padding: 1em 0;
@@ -69,6 +73,24 @@ a {
   }
 }
 
+@media only screen and (max-width: 950px) {
+  #head {
+    text-align: center;
+
+    #logo {
+      display: block;
+      margin: 0 auto 1em auto;
+      text-indent: -9999px;
+      padding: 0;
+      background-position: center !important;
+    }
+
+    ul#menu {
+      text-align: center;
+    }
+  }
+}
+
 
 
 /* Articles list */
@@ -86,6 +108,13 @@ a {
       font-family: monospace;
       color: #666;
     }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .articles {
+    box-sizing: border-box;
+    padding: 0 1em;
   }
 }
 
@@ -265,6 +294,29 @@ article {
           color: #fff;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  article {
+    h1 {
+      padding: 1em;
+      font-weight: bold;
+      line-height: 150%;
+    }
+
+    small, p, ul, ol, h2, h3, h4, h5 {
+      padding: 0 1em;
+    }
+
+    pre code {
+      overflow: auto;
+      border-radius: 0;
+    }
+
+    pre + ul {
+      padding-left: 2em;
     }
   }
 }
