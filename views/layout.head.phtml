@@ -13,7 +13,7 @@
       '/machinelearning' => 'Machine learning',
     ]; ?>
     <?php foreach ( $menu as $url => $title ) { ?>
-      <li>
+      <li <?=isset($data['article']) && strpos($url, $data['article']['category']) == 1 ? 'class="semi"' : ''?>>
         <?php if ( $this->endpoint == $url ) { ?>
           <?=$title?>
         <?php } else { ?>

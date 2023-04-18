@@ -69,6 +69,20 @@ a {
     li {
       display: inline-block;
       margin-right: 1em;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.semi {
+        a {
+          color: #001f3f;
+
+          &:hover {
+            color: #FF4136;
+          }
+        }
+      }
     }
   }
 }
