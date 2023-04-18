@@ -83,6 +83,11 @@ class app {
 
       $list[] = $a;
     }
+
+    usort($list, function($a, $b) {
+      return $a['publish'] < $b['publish'];
+    });
+
     return $list;
   }
 
