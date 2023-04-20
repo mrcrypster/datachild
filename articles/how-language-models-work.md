@@ -32,7 +32,7 @@ Now, how do we know that child understands us? We just talk to it and wait for a
 
 ### How we can teach computers to react to language
 
-As we know, computers can [predict things based on models](/what-is-ml-and-how-it-works). Let's see how this can be used. Take the following statement (which is a sentence of 2 words):
+As we know, computers can [predict things based on models](/programming/what-is-ml-and-how-it-works). Let's see how this can be used. Take the following statement (which is a sentence of 2 words):
 
 ![Good News](/articles/how-language-models-work/good-news.png)
 
