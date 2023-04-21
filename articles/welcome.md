@@ -1,5 +1,5 @@
 # Welcome to DataChild - place to learn data programming and ML
-* url: http://datachild.local/data/welcome
+* url: http://datachild.net/data/welcome
 * category: data
 * published: 2023-04-14
 * tags:

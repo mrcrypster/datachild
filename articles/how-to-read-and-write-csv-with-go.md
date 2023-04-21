@@ -1,5 +1,5 @@
 # Reading CSV, TSV, and invalid CSV files with Golang
-* url: http://datachild.local/programming/reading-csv-golang
+* url: http://datachild.net/programming/reading-csv-golang
 * category: programming
 * published: 2023-04-14
 * tags: golang, csv

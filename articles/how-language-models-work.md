@@ -1,5 +1,5 @@
 # What is a language model and how it works
-* url: http://datachild.local/programming/how-language-models-work
+* url: http://datachild.net/programming/how-language-models-work
 * category: machinelearning
 * published: 2023-04-20
 * tags: nlp, language-models
@@ -229,5 +229,5 @@ Now we can actually start the training process, which involves feeding the prepr
 The last stage is to understand how well our model performs. There are several metrics used for that, like perplexity or accuracy (@plan: language model evaluation metrics). The general idea here is to compare the model response with desired ones, then repeat tuning and training till metrics are good enough.
 
 ## Further reading
+- [How to create Bigram statistical language model in Python](/machinelearning/bigram-language-model-python)
 - (@plan: Preprocessing text data for a language model in Python)
-- (@plan: Bigram statistical language model in Python)

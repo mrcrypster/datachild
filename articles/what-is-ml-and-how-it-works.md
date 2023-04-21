@@ -1,5 +1,5 @@
 # What is Machine Learning and how it works
-* url: http://datachild.local/programming/what-is-ml-and-how-it-works
+* url: http://datachild.net/programming/what-is-ml-and-how-it-works
 * category: machinelearning
 * published: 2023-04-18
 * tags:

@@ -1,5 +1,5 @@
 # Using csvkit to format, clean, and fix CSV files
-* url: http://datachild.local/programming/format-clean-fix-csv-with-csvkit
+* url: http://datachild.net/programming/format-clean-fix-csv-with-csvkit
 * category: programming
 * published: 2023-04-17
 * tags: python, csv
