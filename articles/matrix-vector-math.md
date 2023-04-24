@@ -1,7 +1,7 @@
 # Matrices and vectors math for AI with Python examples
 * url: http://datachild.net/machinelearning/matrix-vector-math
 * category: machinelearning
-* published: 2022-08-21
+* published: 2023-04-24
 * tags: math, matrix, vector
 * description: Article provides an introduction to vectors and matrices, two fundamental concepts in linear algebra, which are widely used in artificial intelligence. It explains what vectors and matrices are and how they are defined in math. Basic operations with vectors and matrices using Python, including adding, multiplying, and transposing matrices.
 
