@@ -10,8 +10,10 @@ As data volumes grow it gets harder to manage with established approaches. Still
 
 [Read more](https://datachild.net/data/welcome)
 
-## Planned:
+## Planned articles:
 * Language model evaluation metrics
 * Text preprocessing for a language model
 * What is a gradient
 * Clickhouse text search using ngram index
+* What is NN and why it works
+* Simple NN python example (vs polynomial regression)
