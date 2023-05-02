@@ -7,7 +7,7 @@
     Published
     <?=published($data['article']['publish'])?>
     in #<a href="/<?=$data['article']['category']?>"><b><?=$data['article']['category']?></b></a>
-    <?=tags($data['article']['tags'], true)?><br/>
-    <a href="https://github.com/mrcrypster/datachild/articles/<?=parse_url($data['article']['url'])['path']?>.md">Edit on Github</a>
+    <?=tags($data['article']['tags'], true)?><br/><br/>
+    <a href="https://github.com/mrcrypster/datachild/articles/tree/main/<?=basename(parse_url($data['article']['url'])['path'])?>.md">Edit this article on Github</a>
   </small>
 </article>
