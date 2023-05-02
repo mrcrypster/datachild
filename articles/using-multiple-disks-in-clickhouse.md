@@ -17,7 +17,7 @@ Let's say we have 3 local storage devices (disks), one default (used by the syst
 
 Before adding disks to Clickhouse, we should create data (named `clickhouse` in our case) folder and grant access to clickhouse user to it:
 
-```bash
+```
 mkdir /mnt/disk2/clickhouse
 chown clickhouse:clickhouse /mnt/disk2/clickhouse
 mkdir /mnt/disk3/clickhouse
@@ -28,7 +28,7 @@ chown clickhouse:clickhouse /mnt/disk3/clickhouse
 
 Now we can register our disks using the following configuration (in `/etc/clickhouse-server/config.d/disks.xml` file):
 
-```xml
+```
 <clickhouse>
   <storage_configuration>
     <disks>
@@ -49,7 +49,7 @@ Now we can register our disks using the following configuration (in `/etc/clickh
 
 No need to restart Clickhouse server, since it's gonna read configuration updates and automatically load it in background.
 To make sure disks are available to Clickhouse we can look at `system.disks` table:
-```sql
+```
 SELECT * FROM system.disks\G
 ```
 ```output
@@ -70,13 +70,17 @@ path:             /mnt/disk3/clickhouse/
 
 Now we can specify which disk we want to store our table to while creating it:
 
-```sql
+```
 CREATE TABLE some_table ( `some_column` String, )
 ENGINE = MergeTree ORDER BY uuid
 SETTINGS **storage_policy = 'd3_main'**
 ```
 * `storage_policy` - allows setting custom storage policy for the table,
 * `d3_main` - in our case we want Clickhouse to put this table on disk3.
+
+That's it.
+Now Clickhouse will automatically use disk3 to write/read `some_table` data.
+Note, that Clickhouse can automatically [move data between disks](https://medium.com/datadenys/scaling-clickhouse-using-amazon-s3-as-a-storage-94a9b9f2e6c7#6d10) accordingly to "hot/cold" storage policies.
 
 ## Further reading
 - [Using Amazon S3 to store Clickhouse data](https://medium.com/datadenys/scaling-clickhouse-using-amazon-s3-as-a-storage-94a9b9f2e6c7)
