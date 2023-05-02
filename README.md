@@ -1,8 +1,17 @@
-# datachild
-Repository for https://datachild.net/ platform
+# Datachild - learning data, programming and ML
+This is a backend repository for https://datachild.net/ platform.
 
-## Planned [last week of April]:
-[] What is a function derivative
-*  Language model evaluation metrics
-*  Text preprocessing for a language model
-*  What is a gradient
+## What is Datachild?
+I (hopefully it'll be "we" soon) write about programming data apps and ML in simple words.
+
+The idea behind this work is to bring modern data and programming technologies closer to engineers, be they beginners or experienced guys and girls.
+
+As data volumes grow it gets harder to manage with established approaches. Still, it’s quite hard to pick the right and migrate running infrastructures to new technologies. Moreover, it’s hard even to understand if anything should be changed at all.
+
+[Read more](https://datachild.net/data/welcome)
+
+## Planned:
+* Language model evaluation metrics
+* Text preprocessing for a language model
+* What is a gradient
+* Clickhouse text search using ngram index
