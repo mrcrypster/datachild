@@ -73,7 +73,7 @@ Now we can specify which disk we want to store our table to while creating it:
 ```
 CREATE TABLE some_table ( `some_column` String, )
 ENGINE = MergeTree ORDER BY uuid
-SETTINGS **storage_policy = 'd3_main'**
+SETTINGS ***storage_policy = 'd3_main'***
 ```
 * `storage_policy` - allows setting custom storage policy for the table,
 * `d3_main` - in our case we want Clickhouse to put this table on disk3.
