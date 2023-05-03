@@ -7,6 +7,9 @@
 
 Clickhouse allows using different storage backends for data, including local disks and remote ones, like [Amazon S3](https://medium.com/datadenys/scaling-clickhouse-using-amazon-s3-as-a-storage-94a9b9f2e6c7).
 It's quite common to have multiple storage devices when dealing with a lot of data.
+
+![Multiple tables on different disks in Clickhouse](/articles/multi-disk-table.png)
+
 Clickhouse allows working with multiple disks on the same server, making it easy to scale beyond single storage device locally.
 
 ## Configure multiple disks
