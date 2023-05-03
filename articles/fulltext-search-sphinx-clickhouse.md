@@ -1,41 +1,41 @@
-# Using Sphinx to add fulltext search to Clickhouse
+# Using Sphinx to add full-text search to Clickhouse
 * url: http://datachild.net/data/fulltext-search-sphinx-clickhouse
 * category: data
 * published: 2023-05-03
 * tags: clickhouse, sphinx
-* description: How to configure multiple disks as storages in Clickhouse, and how to use different disks for different tables in Clickhouse.
+* description: How to configure Sphinx to index text data from Clickhouse. What IDs to use for Clickhouse documents with Sphinx. How to build an index and resolve found documents in Clickhouse.
 
-At the moment of writing (May 2023), Clickhouse doesn't support fulltext search indexes. Although it has [ngram-based and token-based data skipping indexes](https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/mergetree#token-bloom-filter), you might need an external solution for full-featured text search, like [Sphinx](http://sphinxsearch.com/).
+At the moment of writing (May 2023), Clickhouse doesn't support full-text search indexes. Although it has [ngram-based and token-based data skipping indexes](https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/mergetree#token-bloom-filter), you might need an external solution for full-featured text search, like [Sphinx](http://sphinxsearch.com/).
 
 ## Overview of a solution
 
-So, Sphinx enables us to do fulltext search. It works by searching through previously created indexes based on data from Clickhouse:
+So, Sphinx enables us to do full-text searches. It works by searching through previously created indexes based on data from Clickhouse:
 
 ![Clickhouse and Sphinx usage design](/articles/fulltext-search-sphinx-clickhouse/clickhouse-sphinx-design.png)
 
 So we feed text data from Clickhouse to Sphinx and it'll index that text data for further (efficient) search.
 
-Typically, when we search Sphinx, it returns IDs of matched documents. We can then resolve thouse IDs to original documents in Clickhouse:
+Typically, when we search Sphinx, it returns IDs of matched documents. We can then resolve those IDs to original documents in Clickhouse:
 
 ![Clickhouse and Sphinx usage design](/articles/fulltext-search-sphinx-clickhouse/app-sphinx-clickhouse.png)
 
-In order to use Sphinx with Clickhouse, we have to configure an index and run indexing process to build fulltext index. When it's done, we can use Sphinx to search text data from Clickhouse.
+To use Sphinx with Clickhouse, we have to configure an index and run an indexing process to build a full-text index. When it's done, we can use Sphinx to search text data from Clickhouse.
 
 ## Configuring Sphinx index
 
-Sphinx stores text data in documents (just like table rows), each document should have unique ID, which Sphinx requires to be 64-bit integer. Since Clickhouse doesn't (yet?) support autoincrement fields, we should generate unique ID (which is integer) for each row of our table that we want to index. Clickhouse has [rowNumberInAllBlocks()](https://clickhouse.com/docs/en/sql-reference/functions/other-functions#rownumberinallblocks) function to add a row number to the result of the query:
+Sphinx stores text data in documents (just like table rows), and each document should have a unique ID, which Sphinx requires to be a 64-bit integer. Since Clickhouse doesn't (yet?) support autoincrement fields, we should generate a unique ID (which is an integer) for each row of our table that we want to index. ClickHouse has [rowNumberInAllBlocks()](https://clickhouse.com/docs/en/sql-reference/functions/other-functions#rownumberinallblocks) function to add a row number to the result of the query:
 
 ```
 SELECT rowNumberInAllBlocks(), col1, col2 FROM some_table
 ```
-* `rowNumberInAllBlocks()` - will add number of row to the result set,
+* `rowNumberInAllBlocks()` - will add a number of a row to the result set,
 * `col1, col2` - columns of `some_table` that we want to select.
 
 We won't actually use that ID later, so we only need it to surpass Sphinx requirements.
 
 ### UUID to identify Clickhouse table rows
 
-Sphinx will only store text index, not the text itself (unless we ask it to, but we won't to save disk space). That's why we need a way to identify documents in Sphinx and corresponding records in Clickhouse. In other words, we need unique identifier for each row in our Clickhouse table. That's exactly, what standard Sphinx document ID is supposed to be used for, but we can't use it since we don't have a way to generate unique integer value for each table record in Clickhouse.
+Sphinx will only store the text index, not the text itself (unless we ask it to). That's why we need a way to identify documents in Sphinx and corresponding records in Clickhouse. In other words, we need a unique identifier for each row in our Clickhouse table. That's exactly, what standard Sphinx document ID is supposed to be used for, but we can't use it since we don't have a way to generate a unique integer value for each table record in Clickhouse.
 
 Luckily, Clickhouse has [UUID type](https://clickhouse.com/docs/en/sql-reference/data-types/uuid) and can generate unique UUIDs using [generateUUIDv4()](https://clickhouse.com/docs/en/sql-reference/functions/uuid-functions#generateuuidv4). We can use this function as default expression for `uuid` column to have Clickhouse automatically generate UUIDs for each row of our table:
 
@@ -47,10 +47,10 @@ CREATE TABLE some_table
 )
 ENGINE = MergeTree ORDER BY ()
 ```
-* `uuid` - this column will have unique UUID for each record,
-* `DEFAULT` - this allows to specify expression to use if the column is ommited during data insert.
+* `uuid` - this column will have a unique UUID for each record,
+* `DEFAULT` - this allows specifying expression to use if the column is omitted during data insert.
 
-Now we can ask Sphinx to save `uuid` column value during indexing and return it when searching.
+Now we can ask Sphinx to save the `uuid` column value during indexing and return it when searching.
 
 ### Sphinx index configuration
 
@@ -72,11 +72,11 @@ index txt
 }
 ```
 * `type = tsvpipe` - source type to read `TSV` data,
-* `tsvpipe_command` - result of this command should be `TSV` data to index,
-* '+ 1' - we use it to starts document IDs from `1` instead of `0`,
+* `tsvpipe_command` - the result of this command should be `TSV` data to index,
+* '+ 1' - we use it to start document IDs from `1` instead of `0`,
 * `tsvpipe_field = col` - index `col` column as text,
-* `tsvpipe_attr_string = uuid` - Sphinx will return `uuid` value when searching so we can use it later,
-* `index txt` - name of our index is `txt`.
+* `tsvpipe_attr_string = uuid` - Sphinx will return the `uuid` value when searching so we can use it later,
+* `index txt` - the name of our index is `txt`.
 
 
 ### Building and searching an index
@@ -87,10 +87,10 @@ Now we can ask Sphinx to index data:
 indexer txt --rotate
 ```
 * `indexer` - Sphinx indexer utility,
-* `txt` - name of our index (defined previously in config),
-* `--rotate` - will ask running Sphinx process to use new index once its ready.
+* `txt` - the name of our index (defined previously in config),
+* `--rotate` - will ask the running Sphinx process to use the new index once it's ready.
 
-At this point we're able to query Sphinx:
+At this point, we're able to query Sphinx:
 
 ```
 mysql -P 9306 -h 127.0.0.1 -e "select uuid from txt where match('test')"
@@ -104,10 +104,10 @@ mysql -P 9306 -h 127.0.0.1 -e "select uuid from txt where match('test')"
 | cfb234d9-18da-496f-adc4-354aaf54c747 |
 +--------------------------------------+
 ```
-* `mysql` - we use Mysql client since Sphinx understands Mysql protocol,
+* `mysql` - we use a Mysql client since Sphinx understands Mysql protocol,
 * `-P 9306` - default Sphinx port for Mysql protocol,
-* `elect uuid from txt` - we ask Sphinx to retrieve only `uuid` attribute from `txt` index,
-* `match('test')` - search for `test` word in indexed documents.
+* `select uuid from txt` - we ask Sphinx to retrieve only the `uuid` attribute from the `txt` index,
+* `match('test')` - search for the `test` word in indexed documents.
 
 
 ### Resolving documents
@@ -123,13 +123,13 @@ SELECT col FROM some_table WHERE uuid IN ('83c05036-0490-4ee4-b7aa-9554deaa564d'
 ...
 └───────────────────────────────────────────────────────┘
 ```
-* `uuid IN` - we filter `uuid` column based on values returned from Sphinx.
+* `uuid IN` - we filter the `uuid` column based on values returned from Sphinx.
 
 It's important to mention, that Clickhouse `uuid` lookup performance will dramatically depend on a [table sorting key](https://medium.com/datadenys/improving-clickhouse-query-performance-tuning-key-order-f406db7cfeb9).
 
 ## Further reading
 
-- (@Plan: Optimizing Clickhouse fulltext search with Sphinx attributes)
+- (@Plan: Optimizing Clickhouse full-text search with Sphinx attributes)
 - [Ngram Bloom filter in Clickhouse](https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/mergetree#n-gram-bloom-filter)
 - [Token Blook filter in Clickhouse](https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/mergetree#token-bloom-filter)
 - [CSV/TSV index source in Sphinx](http://sphinxsearch.com/docs/current/xsvpipe.html)
