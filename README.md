@@ -17,3 +17,4 @@ As data volumes grow it gets harder to manage with established approaches. Still
 * Clickhouse text search using ngram index
 * What is NN and why it works
 * Simple NN python example (vs polynomial regression)
+* OCR: https://github.com/tesseract-ocr/tessdoc
