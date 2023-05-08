@@ -2,6 +2,12 @@
   <title><?=$this->title($data)?></title>
   <?php if ( isset($data['article']) ) { ?>
     <meta name="description" content="<?=htmlspecialchars($data['article']['description'])?>">
+    <link rel="canonical" href="<?=$data['article']['url']?>"/>
+  <?php } else if ( isset($data['category']) ) { ?>
+    <meta name="description" content="Articles about <?=htmlspecialchars($data['category'])?>">
+    <link rel="canonical" href="https://datachild.net/<?=urlencode($data['category'])?>"/>
+  <?php } else { ?>
+    <link rel="canonical" href="https://datachild.net/"/>
   <?php } ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
