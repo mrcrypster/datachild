@@ -107,5 +107,6 @@ print(gen_test(3, ['First Name', 'Birth Year', 'Credit Card Number', 'Favorite M
 ## Further reading
 * [OpenAI Python module repository](https://github.com/openai/openai-python)
 * [List of OpenAI models that can be used in API](https://platform.openai.com/docs/models)
-* (@Plan: Formatting unstructured data using OpenAI API)
+* [Formatting unstructured data using OpenAI API and Python](http://datachild.net/machinelearning/how-to-format-data-using-openai-api)
+* (@Plan: Extracting entities from unstructured data using OpenAI API)
 * (@Plan: Searching text documents using vector database and OpenAI API)
