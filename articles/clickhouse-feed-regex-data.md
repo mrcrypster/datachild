@@ -33,14 +33,14 @@ clickhouse-client -q "INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - V
 ClickHouse will apply the given regular expression to each line in the source text file. Now let's see how our target table was populated:
 
 ```
-select * from hits
+select * from hits format PrettySpace
 ```
 ```output
-┌─name──────────┬─views─┐
-│ John          │     1 │
-│ News          │     4 │
-│ Modern Sports │     5 │
-└───────────────┴───────┘
+ name            views
+
+ John                1 
+ News                4 
+ Modern Sports       5 
 ```
 
 **Note**, that given regular **must match an entire line** from a file, even if you plan to capture only a part of it. Also, as of version `23.1.2.9` ClickHouse won't allow specifying table columns in the insert statement (`INSERT INTO table(col1, col2, ...)`), so the number of capture groups should be the same as the entire number of columns in the target table.
