@@ -28,7 +28,7 @@ clickhouse-client -q "INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - V
 * `(.+?)` - first capture group (will go to the first column of the `hits` table),
 * `([^ ]+)` - second capture group (will go to the second column of the `hits` table),
 * `FORMAT Regexp` - let ClickHouse know we want it to use the `Regexp` format,
-* `< hits.txt` - pipe `hits.txt` file to ClickHouse client.
+* `hits.txt` - pipe `hits.txt` file to ClickHouse client.
 
 ClickHouse will apply the given regular expression to each line in the source text file. Now let's see how our target table was populated:
 
@@ -65,6 +65,6 @@ Name: Modern Sports - Views: 5436 - Latest: 2023-01-01
 We can use the `format_regexp_skip_unmatched` settings option to ask ClickHouse to skip unmatched lines instead of throwing an exception:
 
 ```
-clickhouse-client --progress -q "INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - Views: (.+?).*', ***format_regexp_skip_unmatched = 1*** FORMAT Regexp" < hits.txt
+clickhouse-client -q "INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - Views: (.+?).*', ***format_regexp_skip_unmatched = 1*** FORMAT Regexp" < hits.txt
 ```
 * `format_regexp_skip_unmatched = 1` - unmatched lines will be silently skipped during processing.
