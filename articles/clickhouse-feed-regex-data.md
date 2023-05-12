@@ -3,34 +3,34 @@
 * category: data
 * published: 2023-05-12
 * tags: clickhouse
-* description: Using regex input format can help in loading unformatted or broken text data into Clickhouse. Using Regexp format for that with a practicle example.
+* description: Using regex input format can help in loading unformatted or broken text data into Clickhouse. Using Regexp format for that with a practical example.
 
-Text data formats like CSV or JSON are cool. But in practice, text data files can be poorly formated, broken or just be strangely structured (or as people say, unstructured) piece of text.
+Text data formats like CSV or JSON are cool. But in practice, text data files can be poorly formatted, broken, or just strangely structured (or as people say, unstructured) pieces of text.
 
 ClickHouse supports ingesting data with [Regexp data format](https://clickhouse.com/docs/en/interfaces/formats#data-format-regexp), which allows specifying regular expression with capture groups. Then ClickHouse will map captured matches to the columns of the target table by index (first capture goes to the first column and so on):
 
 ![ClickHouse maps regex captures to target columns](/articles/clickhouse-feed-regex-data/text-regex-clickhouse.png)
 
-Suppose we need to ingest data to ClickHouse table from the following `hits.txt` file:
+Suppose we need to ingest data to the ClickHouse table from the following `hits.txt` file:
 ```
 Name: John - Views: 12
 Name: News - Views: 4325 - Latest: 2022-12-12
 Name: Modern Sports - Views: 5436 - Latest: 2023-01-01
 ```
 
-In order to use `Regexp` format we have to specify `format_regexp` option with the regular expression itself:
+In order to use the `Regexp` format we have to specify the `format_regexp` option with the regular expression itself:
 
 ```
 clickhouse-client -q "INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - Views: ([^ ]+).*' FORMAT Regexp" < hits.txt
 ```
 * `SETTINGS` - this allows configuring additional parameters for the current query,
-* `format_regexp` - specify regular expression to apply to lines of text file,
-* `(.+?)` - first capture group (will go to the first column of `hits` table),
-* `([^ ]+)` - second capture group (will go to the second column of `hits` table),
-* `FORMAT Regexp` - let ClickHouse know we want it to use `Regexp` format,
+* `format_regexp` - specify the regular expression to apply to lines of text file,
+* `(.+?)` - first capture group (will go to the first column of the `hits` table),
+* `([^ ]+)` - second capture group (will go to the second column of the `hits` table),
+* `FORMAT Regexp` - let ClickHouse know we want it to use the `Regexp` format,
 * `< hits.txt` - pipe `hits.txt` file to ClickHouse client.
 
-ClickHouse will apply given regular expression to each line in the source text file. Now let's see how our target table was populated:
+ClickHouse will apply the given regular expression to each line in the source text file. Now let's see how our target table was populated:
 
 ```
 select * from hits
@@ -43,7 +43,7 @@ select * from hits
 └───────────────┴───────┘
 ```
 
-**Note**, that given regular **must match an entire line** from file, even if you plan to capture only a part of it. Also, as of version `23.1.2.9` ClickHouse won't allow to specify table columns in the insert statement (`INSERT INTO table(col1, col2, ...)`), so the number of capture groups should be the same the entire number of columns in the target table.
+**Note**, that given regular **must match an entire line** from a file, even if you plan to capture only a part of it. Also, as of version `23.1.2.9` ClickHouse won't allow specifying table columns in the insert statement (`INSERT INTO table(col1, col2, ...)`), so the number of capture groups should be the same as the entire number of columns in the target table.
 
 ## Skipping unmatched lines
 
@@ -61,7 +61,7 @@ Name: John - Views: 12
 Name: Modern Sports - Views: 5436 - Latest: 2023-01-01
 ```
 
-We can use `format_regexp_skip_unmatched` settings option to ask ClickHouse to skip unmatched lines instead of throwing an exception:
+We can use the `format_regexp_skip_unmatched` settings option to ask ClickHouse to skip unmatched lines instead of throwing an exception:
 
 ```
 clickhouse-client --progress -q "INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - Views: (.+?).*', format_regexp_skip_unmatched = 1 FORMAT Regexp" < hits.txt
