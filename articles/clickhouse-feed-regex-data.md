@@ -65,6 +65,6 @@ Name: Modern Sports - Views: 5436 - Latest: 2023-01-01
 We can use the `format_regexp_skip_unmatched` settings option to ask ClickHouse to skip unmatched lines instead of throwing an exception:
 
 ```
-clickhouse-client --progress -q "INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - Views: (.+?).*', format_regexp_skip_unmatched = 1 FORMAT Regexp" < hits.txt
+clickhouse-client --progress -q "INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - Views: (.+?).*', ***format_regexp_skip_unmatched = 1*** FORMAT Regexp" < hits.txt
 ```
 * `format_regexp_skip_unmatched = 1` - unmatched lines will be silently skipped during processing.
