@@ -53,11 +53,12 @@ By default, ClickHouse will break on lines that can't be matched with a given re
 Code: 117. DB::Exception: Line "broken line" doesn't match the regexp.: (at row 3)
 : While executing ParallelParsingBlockInputFormat: data for INSERT was parsed from stdin: (in query: INSERT INTO hits SETTINGS format_regexp = 'Name: (.+?) - Views: (.+?).*' FORMAT Regexp). (INCORRECT_DATA)
 ```
+* `doesn't match the regexp` - ClickHouse breaks on lines it can't match.
 
 This will be the case if our file has the following lines in it:
 ```
 Name: John - Views: 12
-**broken line**
+***broken line***
 Name: Modern Sports - Views: 5436 - Latest: 2023-01-01
 ```
 
