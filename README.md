@@ -18,3 +18,7 @@ As data volumes grow it gets harder to manage with established approaches. Still
 * What is NN and why it works
 * Simple NN python example (vs polynomial regression)
 * OCR: https://github.com/tesseract-ocr/tessdoc
+* Skip errors on ingesting data into Clickhouse
+* cast types in Clickhouse
+* encryption in Mysql
+* attribute indexes in Sphinxsearch
