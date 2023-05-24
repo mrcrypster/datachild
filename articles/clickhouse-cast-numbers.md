@@ -123,7 +123,7 @@ SELECT toFloat32OrDefault('s3', toFloat32(2.0)), toInt32OrDefault('3e2', toInt32
 └─────────────────────────────────────────┴─────────────────────────────────────┘
 ```
 * `OrDefault` - asks ClickHouse to return a custom-defined value if it fails to convert,
-* `toFloat32` - we use conversion here to make sure ClickHouse uses the same type for default value as we want for  converted value,
+* `toFloat32(` - we use conversion here to make sure ClickHouse uses the same type for default value as we want for  converted value,
 * `2.0` - default value we want to see upon failed conversions.
 
 
