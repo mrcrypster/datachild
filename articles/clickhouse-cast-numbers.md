@@ -117,7 +117,7 @@ We can also ask ClickHouse to return a specific default value instead of just `n
 ```
 SELECT toFloat32OrDefault('s3', toFloat32(2.0)), toInt32OrDefault('3e2', toInt32(5));
 ```
-```
+```output
 ┌─toFloat32OrDefault('s3', toFloat32(2.))─┬─toInt32OrDefault('3e2', toInt32(5))─┐
 │                                       2 │                                   5 │
 └─────────────────────────────────────────┴─────────────────────────────────────┘
