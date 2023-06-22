@@ -5,11 +5,9 @@
 * tags: mysql, security
 * description: Data-at-rest encryption is important to ensure that data is secured from direct access to original database files. Let's see how to enable and use data-at-rest encryption in Mysql, which is supported for InnoDB storage engine.
 
-
 In an era where data breaches and cyber threats loom large, safeguarding sensitive information has become a top priority for businesses of all sizes. As organizations increasingly rely on databases to store and manage critical data, implementing robust security measures has become imperative. One powerful weapon in the data protection arsenal is the data-at-rest encryption, a technique that shields data when it's stored on disk.
 
 Let's see how data-at-rest encryption can be delivered in the context of MySQL.
-
 
 
 ## Encryption prerequisites
