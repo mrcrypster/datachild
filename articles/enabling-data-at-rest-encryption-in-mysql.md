@@ -68,7 +68,7 @@ CREATE TABLE new_table (
   ...
 ) ENGINE=InnoDB ENCRYPTION='Y'
 ```
-`ENCRYPTION='Y'` - this enables encryption for the new table.
+* `ENCRYPTION='Y'` - this enables encryption for the new table.
 
 Existing tables can be encrypted using the `ALTER` statement:
 
@@ -93,8 +93,8 @@ SELECT NAME, ENCRYPTION FROM INFORMATION_SCHEMA.INNODB_TABLESPACES
 +-------------------------------------------------+------------+
 | NAME                                            | ENCRYPTION |
 +-------------------------------------------------+------------+
-| mysql                                           | **N**          |
-| db/users                                        | **Y**          |
+| mysql                                           | ***N***          |
+| db/users                                        | ***Y***          |
 ...
 ```
 * `NAME` - the name of the table space (in simple words - database and table name),

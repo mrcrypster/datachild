@@ -116,7 +116,7 @@ class app {
 
     if ( !isset($data) || !$data ) {
       $md = file_get_contents($url_or_md);
-      $body_md = trim(preg_fetch('/\n\n(.+)$/misu', $md));
+      $body_md = trim(preg_fetch('/\r?\n\r?\n(.+)$/misu', $md));
       ob_start();
       passthru('echo ' . escapeshellarg($body_md) . '| pandoc -t html');
       $html = ob_get_clean();
