@@ -18,3 +18,7 @@ exec('rm -rf /var/cache/nginx/datachild/*');
 
 # rebuild sitemaps
 include __DIR__ . '/sitemap.php';
+
+
+# regenerate README.md articles
+# ...

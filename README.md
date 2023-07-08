@@ -10,6 +10,9 @@ As data volumes grow it gets harder to manage with established approaches. Still
 
 [Read more](https://datachild.net/data/welcome)
 
+## Posted articles:
+...
+
 ## Planned articles:
 * Language model evaluation metrics
 * Text preprocessing for a language model
@@ -18,5 +21,3 @@ As data volumes grow it gets harder to manage with established approaches. Still
 * What is NN and why it works
 * Simple NN python example (vs polynomial regression)
 * OCR: https://github.com/tesseract-ocr/tessdoc
-* Encryption in Mysql
-* Attribute indexes in Sphinxsearch
