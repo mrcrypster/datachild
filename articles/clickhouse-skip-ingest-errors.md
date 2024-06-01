@@ -1,4 +1,4 @@
-# How manage ingesting errors in ClickHouse
+# How to manage ingesting errors in ClickHouse
 * url: http://datachild.net/data/clickhouse-skip-ingest-errors
 * category: data
 * published: 2023-05-23
