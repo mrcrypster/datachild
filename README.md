@@ -1,23 +1,22 @@
-# Datachild - learning data, programming and ML
+# Datachild -  blog about data and ML
 This is a backend repository for https://datachild.net/ platform.
 
-## What is Datachild?
-I write about programming data apps and ML in simple words.
-
-The idea behind this work is to bring modern data and programming technologies closer to software engineers, be they beginners or experienced ones.
-
-As data volumes grow it gets harder to manage with established approaches. Still, it’s quite hard to pick the right and migrate running infrastructures to new technologies. Moreover, it’s hard even to understand if anything should be changed at all.
-
-[Read more](https://datachild.net/data/welcome)
-
-## Posted articles:
-...
-
-## Planned articles:
-* Language model evaluation metrics
-* Text preprocessing for a language model
-* What is a gradient (why descent is used for training NNs)
-* Clickhouse text search (using ngram index, bloom, ...)
-* What is NN and why it works
-* Simple NN python example (vs polynomial regression)
-* OCR: https://github.com/tesseract-ocr/tessdoc
+- [Efficient vector similarity search with Annoy library based on ANN](https://datachild.net/data/efficient-vector-search-with-annoy-library-based-on-ann)
+- [Improving Sphinxsearch performance with attributes indexes](https://datachild.net/data/improving-sphinxsearch-performance-with-attributes-indexes)
+- [Enabling data at rest encryption in Mysql](https://datachild.net/data/enabling-data-at-rest-encryption-in-mysql)
+- [Converting strings to numbers in ClickHouse](https://datachild.net/data/clickhouse-cast-numbers)
+- [How to manage ingesting errors in ClickHouse](https://datachild.net/data/clickhouse-skip-ingest-errors)
+- [How to merge large tables in ClickHouse using join](https://datachild.net/data/clickhouse-join-large-tables-on-column)
+- [How to use Regex to feed text data to ClickHouse](https://datachild.net/data/clickhouse-feed-regex-data)
+- [Formatting unstructured data using OpenAI API and Python](https://datachild.net/machinelearning/how-to-format-data-using-openai-api)
+- [Quick start OpenAI API example using Python](https://datachild.net/machinelearning/openai-api-python-quickstart)
+- [Using Sphinx to add full-text search to Clickhouse](https://datachild.net/data/fulltext-search-sphinx-clickhouse)
+- [How to use multiple disks in Clickhouse](https://datachild.net/data/using-multiple-disks-in-clickhouse)
+- [What is a function derivative and how to optimize functions](https://datachild.net/machinelearning/function-derivative)
+- [Matrices and vectors math for AI with Python examples](https://datachild.net/machinelearning/matrix-vector-math)
+- [Creating a bigram language model for text generation with Python](https://datachild.net/machinelearning/bigram-language-model-python)
+- [What is a language model and how it works](https://datachild.net/programming/how-language-models-work)
+- [What is Machine Learning and how it works](https://datachild.net/programming/what-is-ml-and-how-it-works)
+- [Using csvkit to format, clean, and fix CSV files](https://datachild.net/programming/format-clean-fix-csv-with-csvkit)
+- [Reading CSV, TSV, and invalid CSV files with Golang](https://datachild.net/programming/reading-csv-golang)
+- [Welcome to DataChild - place to learn data programming and ML](https://datachild.net/data/welcome)
