@@ -58,7 +58,7 @@ pip install openai
 
 Make sure you have OpenAI API key to use:
 
-```python
+```
 from openai import OpenAI
 text = "nuclear bomb"
 
@@ -92,7 +92,7 @@ Next, generate an embedding for the query phrase and find the closest vectors to
 Let's illustrate this using the [history of the US](https://en.wikipedia.org/wiki/History_of_the_United_States) article on Wikipedia.
 
 
-```python
+```
 import wikipedia
 import re
 wiki = wikipedia.page('History of the United States')
@@ -113,7 +113,7 @@ print(len(blocks))
 
 Now let's define `embed(text)` function for the ease of generating a lot of embeddings using OpenAI API:
 
-```python
+```
 from openai import OpenAI
 
 client = OpenAI(api_key='...')
@@ -127,7 +127,7 @@ def embed(text):
 
 Ok. Let's take all the text `blocks` and generate embeddings for them:
 
-```python
+```
 vectors = []
 for block in blocks:
   vector = embed(block)
@@ -145,7 +145,7 @@ We have 326 embeddings now
 Now we have the `vectors` array with the list of embeddings for all text pieces from the original Wikipedia article.
 Let's search for the same `nuclear bomb` text in it:
 
-```python
+```
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 

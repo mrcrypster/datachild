@@ -1,6 +1,7 @@
 # Datachild -  blog about data and ML
 This is a backend repository for https://datachild.net/ platform.
 
+- [What is a text embedding and how to use it for text search](https://datachild.net/machinelearning/what-is-text-embedding-and-how-to-use-it-for-text-search)
 - [Image similarity search based on embeddings and sentence_transformers](https://datachild.net/machinelearning/image-similarity-search-with-embeddings-based-on-sentence-transformers)
 - [What is actually a neural network?](https://datachild.net/machinelearning/what-is-actually-a-neural-network)
 - [Vector similarity search using Redis Stack](https://datachild.net/data/vector-similarity-search-using-redis-stack)
