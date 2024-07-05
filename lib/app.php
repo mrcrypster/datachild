@@ -25,13 +25,14 @@ class app {
   }
 
   public function load() {
+    $this->endpoint = urldecode($this->endpoint);
     if ( $this->endpoint == '/' ) {
       return [
         'view' => 'default',
         'articles' => $this->get_articles()
       ];
     }
-    else if ( preg_match('/^\/[a-z\-0-9]+$/', $this->endpoint) ) {
+    else if ( preg_match('/^\/[a-z\-0-9 ]+$/', $this->endpoint) ) {
       return [
         'category' => $this->endpoint,
         'articles' => $this->get_articles(['category' => trim($this->endpoint, '/')]),
