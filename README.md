@@ -1,3 +1,5 @@
+Sorry, lost the domain :) will fix that in future.
+
 # Datachild -  blog about data and ML
 This is a backend repository for https://datachild.net/ platform.
 
